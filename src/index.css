@@ -1,0 +1,181 @@
+@layer base;
+
+:root {
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-script: 'Dancing Script', cursive;
+
+  --color-cream: #FFFDF9;
+  --color-warm-vanilla: #FAF4EB;
+  --color-pink-soft: #FFE6EE;
+  --color-pink-medium: #FFA4BD;
+  --color-pink-accent: #FF5A87;
+  --color-pink-deep: #C72557;
+  
+  --color-peach: #FFD2BC;
+  --color-peach-accent: #FF8A5C;
+  --color-lavender: #EADCF8;
+  --color-gold: #F7C844;
+  --color-gold-dark: #C69A20;
+
+  --color-text-main: #2A1728;
+  --color-text-muted: #6B4D66;
+  --color-text-soft: #9F7A99;
+
+  --shadow-sm: 0 4px 12px rgba(184, 69, 102, 0.08);
+  --shadow-md: 0 10px 25px rgba(184, 69, 102, 0.12);
+  --shadow-lg: 0 20px 45px rgba(184, 69, 102, 0.16);
+  --shadow-glow: 0 0 35px rgba(255, 90, 135, 0.35);
+
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-full: 9999px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  color: var(--color-text-main);
+  background-color: #FFFDF9;
+}
+
+body {
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 10% 15%, rgba(255, 230, 238, 0.8) 0%, transparent 45%),
+    radial-gradient(circle at 90% 40%, rgba(234, 220, 248, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 30% 85%, rgba(255, 210, 188, 0.6) 0%, transparent 50%),
+    linear-gradient(180deg, #FFFDF9 0%, #FFF5F7 50%, #FFF8F3 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.6;
+}
+
+/* Subtle luxury grain effect */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.022;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Soft Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFF5F7;
+}
+::-webkit-scrollbar-thumb {
+  background: #FFB8CB;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF85A1;
+}
+
+/* Button & interactive focus styles */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-pink-accent);
+  outline-offset: 3px;
+}
+
+/* Glassmorphism Classes */
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 16px 36px rgba(220, 110, 140, 0.09);
+  border-radius: var(--radius-md);
+}
+
+.glass-card-glow {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 180, 200, 0.4);
+  box-shadow: 0 20px 48px rgba(230, 90, 130, 0.14), 0 0 30px rgba(255, 160, 190, 0.2);
+}
+
+.text-gradient-sweet {
+  background: linear-gradient(135deg, #FF4572 0%, #FF8A5C 60%, #E63968 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #C6891B 0%, #F5B041 50%, #C6891B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Floating animation utilities */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 90, 135, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 38px rgba(255, 90, 135, 0.55);
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
